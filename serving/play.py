@@ -1,7 +1,7 @@
 import subprocess
 
 command = [
-    'python3',
+    'python',
     'serving/main.py',
     
     '--mode', 'test', # test가 학습 모델을 통해 구동하는 모드
