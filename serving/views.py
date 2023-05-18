@@ -55,7 +55,7 @@ def main(request):
         predicted_label = labels[prediction]
 
         # play.py 실행 >> StarGAN을 통한 표정 생성
-        subprocess.run(['python', 'serving/play.py'])
+        subprocess.run(['python3', 'serving/play.py'])
         
         # 파일 경로 설정
         results_save_path = os.path.join(settings.BASE_DIR,'static', 'stargan','outputs','results')
