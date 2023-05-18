@@ -117,11 +117,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/static/' # 웹사이트가 찾을때 
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'stargan'),
-]
+] # 개발 환경에서 찾을 때 
 
 
 # Default primary key field type
@@ -129,4 +129,4 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static','stargan')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static') # 웹사이트
