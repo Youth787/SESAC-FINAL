@@ -121,8 +121,7 @@ STATIC_URL = '/static/' # 웹사이트가 찾을때
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'stargan'),
-] # 개발 환경에서 찾을 때 
-
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
