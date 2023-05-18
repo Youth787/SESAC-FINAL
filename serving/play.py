@@ -13,11 +13,11 @@ command = [
                                 # 현재 200만번 돌린 모델
     
     # 여기서부터는 폴더 경로
-    '--rafd_image_dir', 'stargan/input',   # 여기가 이미지 인풋 폴더
-    '--sample_dir', 'stargan/outputs/samples',
-    '--log_dir', 'stargan/outputs/logs',
-    '--model_save_dir', 'stargan/outputs/models',
-    '--result_dir', 'stargan/outputs/results' # 여기에 결과물 출력
+    '--rafd_image_dir', 'static/stargan/input',   # 여기가 이미지 인풋 폴더
+    '--sample_dir', 'static/stargan/outputs/samples',
+    '--log_dir', 'static/stargan/outputs/logs',
+    '--model_save_dir', 'static/stargan/outputs/models',
+    '--result_dir', 'static/stargan/outputs/results' # 여기에 결과물 출력
     
 ]
 subprocess.call(command) # 이게 py 호출 코드

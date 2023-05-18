@@ -120,7 +120,7 @@ USE_TZ = True
 STATIC_URL = '/static/' # 웹사이트가 찾을때 
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'stargan'),
+    os.path.join(BASE_DIR,'static', 'stargan'),
 ]
 
 # Default primary key field type
