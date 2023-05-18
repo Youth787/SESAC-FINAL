@@ -24,3 +24,4 @@ urlpatterns = [
     path('',main, name='main'),
 
 ]
+
