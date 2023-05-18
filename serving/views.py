@@ -6,6 +6,7 @@ from django.templatetags.static import static
 import shutil
 import os
 import subprocess
+from PIL import Image
 
 
 # 모델과 토크나이저 로드
@@ -36,6 +37,8 @@ def main(request):
         input_text = request.POST.get('input_text', '')
         input_image = request.FILES.get('input_image')
 
+        input_image = Image.open(input_image).resize((128,128))
+        
         # 이미지 저장 경로 설정
         input_save_path = os.path.join(settings.BASE_DIR,'stargan', 'input','image')
 
