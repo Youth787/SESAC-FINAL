@@ -40,7 +40,7 @@ def main(request):
         # input_image = Image.open(input_image).resize((128,128))
         
         # 이미지 저장 경로 설정
-        input_save_path = os.path.join(settings.BASE_DIR,'static','static','stargan','input','image')
+        input_save_path = os.path.join(settings.BASE_DIR,'static','stargan','input','image')
 
         # 이미지 저장
         file_name = 'input_img.jpg'
@@ -58,8 +58,8 @@ def main(request):
         subprocess.run(['python3', 'serving/play.py'])
         
         # 파일 경로 설정
-        results_save_path = os.path.join(settings.BASE_DIR, 'static','static', 'stargan','outputs','results')
-        outputs_save_path = os.path.join(settings.BASE_DIR,'static','static', 'stargan', 'outputs')
+        results_save_path = os.path.join(settings.BASE_DIR,'static', 'stargan','outputs','results')
+        outputs_save_path = os.path.join(settings.BASE_DIR,'static', 'stargan', 'outputs')
         src_image = os.path.join(results_save_path, f'{predicted_label}.jpg')
         des_image = os.path.join(outputs_save_path, f'{predicted_label}.jpg')
         
@@ -67,7 +67,7 @@ def main(request):
         shutil.move(src_image, des_image)
 
         # stargan/results 폴더 내부 파일들 삭제
-        folder_path = os.path.join(settings.BASE_DIR,'static','static', 'stargan', 'outputs','results')
+        folder_path = os.path.join(settings.BASE_DIR,'static', 'stargan', 'outputs','results')
         for file_name in os.listdir(folder_path):
             file_path = os.path.join(folder_path, file_name)
             if os.path.isfile(file_path):
@@ -75,8 +75,8 @@ def main(request):
         # 추후 input_image와 stargan_output에 있는 파일도 삭제하게 만들 것
         
         # 이미지 URL 생성
-        image_url_output = os.path.join('static/static/stargan/outputs',f'{predicted_label}.jpg')
-        image_url_input = os.path.join('static/static/stargan/input/image','input_img.jpg')
+        image_url_output = os.path.join('static/stargan/outputs',f'{predicted_label}.jpg')
+        image_url_input = os.path.join('static/stargan/input/image','input_img.jpg')
         
         context = {
             'input_text': input_text,
