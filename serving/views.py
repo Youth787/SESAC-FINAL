@@ -58,10 +58,13 @@ def main(request):
         subprocess.run(['python3', 'serving/play.py'])
         
         # 파일 경로 설정
-        results_save_path = os.path.join(settings.BASE_DIR,'static', 'stargan','outputs','results')
-        outputs_save_path = os.path.join(settings.BASE_DIR,'static', 'stargan', 'outputs')
-        src_image = os.path.join(results_save_path, f'{predicted_label}.jpg')
-        des_image = os.path.join(outputs_save_path, f'{predicted_label}.jpg')
+        # results_save_path = os.path.join(settings.BASE_DIR,'static', 'stargan','outputs','results')
+        # outputs_save_path = os.path.join(settings.BASE_DIR,'static', 'stargan', 'outputs')
+        # src_image = os.path.join(results_save_path, f'{predicted_label}.jpg')
+        # des_image = os.path.join(outputs_save_path, f'{predicted_label}.jpg')
+        
+        src_image = os.path.join('static/stargan/outputs/results',f'{predicted_label}.jpg')
+        des_image = os.path.join('static/stargan/outputs','input_img.jpg')
         
         # 파일 이동
         shutil.move(src_image, des_image)
@@ -75,13 +78,13 @@ def main(request):
         # 추후 input_image와 stargan_output에 있는 파일도 삭제하게 만들 것
         
         # 이미지 URL 생성
-        image_url_output_path = os.path.join(settings.BASE_DIR,'static', 'stargan','outputs')
-        image_url_input_path = os.path.join(settings.BASE_DIR,'static', 'stargan','input','image')
-        image_url_output = os.path.join(image_url_output_path,f'{predicted_label}.jpg')
-        image_url_input = os.path.join(image_url_input_path,'input_img.jpg')
+        # image_url_output_path = os.path.join(settings.BASE_DIR,'static', 'stargan','outputs')
+        # image_url_input_path = os.path.join(settings.BASE_DIR,'static', 'stargan','input','image')
+        # image_url_output = os.path.join(image_url_output_path,f'{predicted_label}.jpg')
+        # image_url_input = os.path.join(image_url_input_path,'input_img.jpg')
         
-        # image_url_output = os.path.join('static/stargan/outputs',f'{predicted_label}.jpg')
-        # image_url_input = os.path.join('static/stargan/input/image','input_img.jpg')
+        image_url_output = os.path.join('static/stargan/outputs',f'{predicted_label}.jpg')
+        image_url_input = os.path.join('static/stargan/input/image','input_img.jpg')
         print('##################################################################')
         print(image_url_output)
         print(image_url_input)
