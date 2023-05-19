@@ -17,6 +17,27 @@ model.load_state_dict(torch.load(model_path, map_location=device))
 model.to(device)
 tokenizer = BertTokenizer.from_pretrained('klue/bert-base')
 
+
+# StarGAN main.py 실행
+def stargan_model():
+    command = [
+        'python3',
+        'serving/main.py',
+        '--mode', 'test',
+        '--dataset', 'RaFD',
+        '--rafd_crop_size', '128',
+        '--image_size', '128',
+        '--c_dim', '3',
+        '--test_iters', '2000000',
+        '--rafd_image_dir', str(settings.BASE_DIR / 'static' / 'stargan' / 'input'),
+        '--sample_dir', str(settings.BASE_DIR / 'static' / 'stargan' / 'outputs' / 'samples'),
+        '--log_dir', str(settings.BASE_DIR / 'static' / 'stargan' / 'outputs' / 'logs'),
+        '--model_save_dir', str(settings.BASE_DIR / 'static' / 'stargan' / 'outputs' / 'models'),
+        '--result_dir', str(settings.BASE_DIR / 'static' / 'stargan' / 'outputs' / 'results')
+    ]
+    subprocess.call(command)
+
+
 # 예측 함수
 def predict_sentiment(input_text):
     inputs = tokenizer.encode_plus(input_text, add_special_tokens=True, truncation=True, max_length=64, padding='max_length', return_tensors='pt')
@@ -55,7 +76,8 @@ def main(request):
         predicted_label = labels[prediction]
 
         # play.py 실행 >> StarGAN을 통한 표정 생성
-        subprocess.run(['python3', 'serving/play.py'])
+        # subprocess.run(['python3', 'serving/play.py'])
+        stargan_model()
         
         # 파일 경로 설정
         results_save_path = os.path.join(settings.BASE_DIR,'static', 'stargan','outputs','results')
