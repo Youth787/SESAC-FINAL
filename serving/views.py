@@ -6,6 +6,7 @@ from django.templatetags.static import static
 import shutil
 import os
 import subprocess
+import cv2
 
 
 # 모델과 토크나이저 로드
@@ -29,8 +30,32 @@ def predict_sentiment(input_text):
     
     return predicted_class
 
-# Django 뷰
 
+# 얼굴 크롭 함수
+def haar_face_crop(image_folder_path, file_name):
+    # file의 경로 설정
+    file = f'{image_folder_path}/{file_name}' # 윈도우에서는 \, 맥에서는 / 
+
+    # haar_cascade 불러오기
+    face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
+    
+    file = cv2.imread(file)
+    # 얼굴 x,y,w,h 위치 추출, 리스트 형태
+    faces = face_cascade.detectMultiScale(cv2.cvtColor(file, cv2.COLOR_BGR2GRAY), 1.2, 5)
+    
+    for i, (x,y,w,h) in enumerate(faces):
+        file = file[y:y+h, x:x+w]
+        file = cv2.resize(file, (128,128))
+        # file이라는 이미지를 크롭 사이즈에 맞게 자르면서 이미지 128x128사이즈로 리사이즈
+            
+    # 저장할 때 cv2.imwrite로 저장하면서 bgr >> rgb형태로 변환 저장, 이미지의 상세 경로 필요
+    crop_image_path = os.path.join(settings.BASE_DIR, 'static', 'stargan', 'input', 'image', file_name)
+    
+    # 파일 저장을 return
+    return cv2.imwrite(crop_image_path, file)
+
+
+# Django 뷰
 def main(request):
     if request.method == 'POST':
         input_text = request.POST.get('input_text', '')
@@ -45,6 +70,9 @@ def main(request):
             with open(os.path.join(input_save_path, file_name), 'wb') as f:
                 for chunk in input_image.chunks():
                     f.write(chunk)
+        
+        # 얼굴 크롭 진행
+        haar_face_crop(input_save_path, file_name)
         
         prediction = predict_sentiment(input_text)
 
