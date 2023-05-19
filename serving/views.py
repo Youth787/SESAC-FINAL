@@ -85,10 +85,7 @@ def main(request):
         
         image_url_output = os.path.join('static/stargan/outputs',f'{predicted_label}.jpg')
         image_url_input = os.path.join('static/stargan/input/image','input_img.jpg')
-        print('##################################################################')
-        print(image_url_output)
-        print(image_url_input)
-        
+
         context = {
             'input_text': input_text,
             'predicted_label': predicted_label,
