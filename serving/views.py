@@ -58,13 +58,13 @@ def main(request):
         subprocess.run(['python3', 'serving/play.py'])
         
         # 파일 경로 설정
-        # results_save_path = os.path.join(settings.BASE_DIR,'static', 'stargan','outputs','results')
-        # outputs_save_path = os.path.join(settings.BASE_DIR,'static', 'stargan', 'outputs')
-        # src_image = os.path.join(results_save_path, f'{predicted_label}.jpg')
-        # des_image = os.path.join(outputs_save_path, f'{predicted_label}.jpg')
+        results_save_path = os.path.join(settings.BASE_DIR,'static', 'stargan','outputs','results')
+        outputs_save_path = os.path.join(settings.BASE_DIR,'static', 'stargan', 'outputs')
+        src_image = os.path.join(results_save_path, f'{predicted_label}.jpg')
+        des_image = os.path.join(outputs_save_path, f'{predicted_label}.jpg')
         
-        src_image = os.path.join('static/stargan/outputs/results',f'{predicted_label}.jpg')
-        des_image = os.path.join('static/stargan/outputs',f'{predicted_label}.jpg')
+        # src_image = os.path.join('static/stargan/outputs/results',f'{predicted_label}.jpg')
+        # des_image = os.path.join('static/stargan/outputs',f'{predicted_label}.jpg')
         
         # 파일 이동
         shutil.move(src_image, des_image)
