@@ -75,8 +75,13 @@ def main(request):
         # 추후 input_image와 stargan_output에 있는 파일도 삭제하게 만들 것
         
         # 이미지 URL 생성
-        image_url_output = os.path.join('static/stargan/outputs',f'{predicted_label}.jpg')
-        image_url_input = os.path.join('static/stargan/input/image','input_img.jpg')
+        image_url_output_path = os.path.join(settings.BASE_DIR,'static', 'stargan','outputs')
+        image_url_input_path = os.path.join(settings.BASE_DIR,'static', 'stargan','input','image')
+        image_url_output = os.path.join(image_url_output_path,f'{predicted_label}.jpg')
+        image_url_input = os.path.join(image_url_input_path,'input_img.jpg')
+        
+        # image_url_output = os.path.join('static/stargan/outputs',f'{predicted_label}.jpg')
+        # image_url_input = os.path.join('static/stargan/input/image','input_img.jpg')
         print('##################################################################')
         print(image_url_output)
         print(image_url_input)
