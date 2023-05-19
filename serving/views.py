@@ -6,7 +6,6 @@ from django.templatetags.static import static
 import shutil
 import os
 import subprocess
-from PIL import Image
 
 
 # 모델과 토크나이저 로드
@@ -16,27 +15,6 @@ model = BertForSequenceClassification.from_pretrained('klue/bert-base', num_labe
 model.load_state_dict(torch.load(model_path, map_location=device))
 model.to(device)
 tokenizer = BertTokenizer.from_pretrained('klue/bert-base')
-
-
-# StarGAN main.py 실행
-def stargan_model():
-    command = [
-        'python3',
-        'serving/main.py',
-        '--mode', 'test',
-        '--dataset', 'RaFD',
-        '--rafd_crop_size', '128',
-        '--image_size', '128',
-        '--c_dim', '3',
-        '--test_iters', '2000000',
-        '--rafd_image_dir', str(settings.BASE_DIR / 'static' / 'stargan' / 'input'),
-        '--sample_dir', str(settings.BASE_DIR / 'static' / 'stargan' / 'outputs' / 'samples'),
-        '--log_dir', str(settings.BASE_DIR / 'static' / 'stargan' / 'outputs' / 'logs'),
-        '--model_save_dir', str(settings.BASE_DIR / 'static' / 'stargan' / 'outputs' / 'models'),
-        '--result_dir', str(settings.BASE_DIR / 'static' / 'stargan' / 'outputs' / 'results')
-    ]
-    subprocess.call(command)
-
 
 # 예측 함수
 def predict_sentiment(input_text):
@@ -58,10 +36,8 @@ def main(request):
         input_text = request.POST.get('input_text', '')
         input_image = request.FILES.get('input_image')
 
-        # input_image = Image.open(input_image).resize((128,128))
-        
         # 이미지 저장 경로 설정
-        input_save_path = os.path.join(settings.BASE_DIR,'static','stargan','input','image')
+        input_save_path = os.path.join(settings.BASE_DIR, 'static','stargan', 'input','image')
 
         # 이미지 저장
         file_name = 'input_img.jpg'
@@ -76,23 +52,21 @@ def main(request):
         predicted_label = labels[prediction]
 
         # play.py 실행 >> StarGAN을 통한 표정 생성
-        # subprocess.run(['python3', 'serving/play.py'])
-        stargan_model()
+        subprocess.run(['python3', 'serving/play.py'])
         
         # 파일 경로 설정
-        results_save_path = os.path.join(settings.BASE_DIR,'static', 'stargan','outputs','results')
-        outputs_save_path = os.path.join(settings.BASE_DIR,'static', 'stargan', 'outputs')
+        results_save_path = os.path.join(settings.BASE_DIR, 'static', 'stargan','outputs','results')
+        outputs_save_path = os.path.join(settings.BASE_DIR, 'static','stargan', 'outputs')
         src_image = os.path.join(results_save_path, f'{predicted_label}.jpg')
         des_image = os.path.join(outputs_save_path, f'{predicted_label}.jpg')
-        
-        # src_image = os.path.join('static/stargan/outputs/results',f'{predicted_label}.jpg')
-        # des_image = os.path.join('static/stargan/outputs',f'{predicted_label}.jpg')
+        # src_image = os.path.join('static/stargan/outputs/results', f'{predicted_label}.jpg')
+        # des_image = os.path.join('static/stargan/outputs', f'{predicted_label}.jpg')
         
         # 파일 이동
         shutil.move(src_image, des_image)
 
         # stargan/results 폴더 내부 파일들 삭제
-        folder_path = os.path.join(settings.BASE_DIR,'static', 'stargan', 'outputs','results')
+        folder_path = os.path.join(settings.BASE_DIR, 'static','stargan', 'outputs','results')
         for file_name in os.listdir(folder_path):
             file_path = os.path.join(folder_path, file_name)
             if os.path.isfile(file_path):
@@ -100,14 +74,9 @@ def main(request):
         # 추후 input_image와 stargan_output에 있는 파일도 삭제하게 만들 것
         
         # 이미지 URL 생성
-        # image_url_output_path = os.path.join(settings.BASE_DIR,'static', 'stargan','outputs')
-        # image_url_input_path = os.path.join(settings.BASE_DIR,'static', 'stargan','input','image')
-        # image_url_output = os.path.join(image_url_output_path,f'{predicted_label}.jpg')
-        # image_url_input = os.path.join(image_url_input_path,'input_img.jpg')
-        
         image_url_output = os.path.join('static/stargan/outputs',f'{predicted_label}.jpg')
         image_url_input = os.path.join('static/stargan/input/image','input_img.jpg')
-
+        
         context = {
             'input_text': input_text,
             'predicted_label': predicted_label,
@@ -117,9 +86,6 @@ def main(request):
         
         return render(request, 'serving/result.html', context)
     return render(request, 'serving/main.html')
-
-
-
 
 
 
