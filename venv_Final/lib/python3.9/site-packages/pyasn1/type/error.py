@@ -1,11 +1,3 @@
-#
-# This file is part of pyasn1 software.
-#
-# Copyright (c) 2005-2020, Ilya Etingof <etingof@gmail.com>
-# License: https://pyasn1.readthedocs.io/en/latest/license.html
-#
-from pyasn1.error import PyAsn1Error
-
-
-class ValueConstraintError(PyAsn1Error):
-    pass
+version https://git-lfs.github.com/spec/v1
+oid sha256:da4c186246ddda35c8544139e9384b46604438665f69fc288043a8fbd455fc66
+size 259
