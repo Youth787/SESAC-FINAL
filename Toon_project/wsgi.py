@@ -1,3 +1,16 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:a72f8368d62f02e0f668ccc0f7093361681baa48a03ed1c2f16d4fde74585f36
-size 401
+"""
+WSGI config for Toon_project project.
+
+It exposes the WSGI callable as a module-level variable named ``application``.
+
+For more information on this file, see
+https://docs.djangoproject.com/en/4.2/howto/deployment/wsgi/
+"""
+
+import os
+
+from django.core.wsgi import get_wsgi_application
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Toon_project.settings')
+
+application = get_wsgi_application()

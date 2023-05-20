@@ -1,3 +1,9 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:03dc1f11374a667c9b7db10dd5276d640b0c2d5b2e7866b4ccef772732bd3852
-size 262
+# flake8: noqa
+import os
+import sys
+
+if sys.version_info[:2] >= (3, 0):
+    def exec_file_wrapper(fpath, g_vars, l_vars):
+        with open(fpath) as f:
+            code = compile(f.read(), os.path.basename(fpath), 'exec')
+            exec(code, g_vars, l_vars)

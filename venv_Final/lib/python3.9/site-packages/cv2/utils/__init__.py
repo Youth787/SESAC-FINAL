@@ -1,3 +1,14 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:7eec381871ce5ecc7129cf8069d00438a42afc8d46af81b7c8c951bc06d33f7d
-size 330
+from collections import namedtuple
+
+import cv2
+
+
+NativeMethodPatchedResult = namedtuple("NativeMethodPatchedResult",
+                                       ("py", "native"))
+
+
+def testOverwriteNativeMethod(arg):
+    return NativeMethodPatchedResult(
+        arg + 1,
+        cv2.utils._native.testOverwriteNativeMethod(arg)
+    )

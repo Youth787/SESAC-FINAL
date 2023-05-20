@@ -1,3 +1,16 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:f46a4df66af7161bb26d50ec6e20f37d210661c3316755204657b52d543e8aef
-size 401
+"""
+ASGI config for Toon_project project.
+
+It exposes the ASGI callable as a module-level variable named ``application``.
+
+For more information on this file, see
+https://docs.djangoproject.com/en/4.2/howto/deployment/asgi/
+"""
+
+import os
+
+from django.core.asgi import get_asgi_application
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Toon_project.settings')
+
+application = get_asgi_application()
