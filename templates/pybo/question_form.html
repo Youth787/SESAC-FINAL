@@ -1,14 +1,14 @@
 {% extends 'pybobase.html' %}
 
 {% block content %}
-<div class="container">
+<div class="container d-flex flex-column align-items-center">
     <h5 class="my-3 border-bottom pb-2">애니티콘 등록</h5>
-    <form method="post" enctype="multipart/form-data">  <!-- enctype 속성을 추가하여 파일 업로드를 지원하도록 설정 -->
+    <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
         <div class="mb-3">
             <label for="id_photo" class="form-label">사진</label>
-            <input type="file" name="photo" id="id_photo" class="form-control">  <!-- 파일 업로드를 위한 입력 필드 추가 -->
+            <input type="file" name="photo" id="id_photo" class="form-control">
         </div>
         <button type="submit" class="btn btn-primary">저장하기</button>
     </form>
