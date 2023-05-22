@@ -1,11 +1,10 @@
 from django.shortcuts import render
-import torch
 from transformers import BertForSequenceClassification, BertTokenizer
 from django.conf import settings
-import shutil
-import os
-import subprocess
-import cv2
+import os ,io, cv2, subprocess, shutil, torch
+from PIL import Image
+from django.http import HttpResponse, JsonResponse
+
 
 
 # 모델과 토크나이저 로드
@@ -53,7 +52,41 @@ def haar_face_crop(image_folder_path, file_name):
     # 파일 저장을 return
     return cv2.imwrite(crop_image_path, file)
 
-# Django 뷰
+
+def download_combined_image(request):
+    predicted_label = request.session.get('predicted_label')
+
+    # 이미지 파일들을 가져옵니다.
+    image1_path = 'static/stargan/input/image/input_img.jpg'
+    image2_path = f'static/stargan/outputs/{predicted_label}.jpg'
+    image3_path = 'static/cyclegan/output.jpg'
+
+    with open(image1_path, 'rb') as f:
+        image1_data = f.read()
+    with open(image2_path, 'rb') as f:
+        image2_data = f.read()
+    with open(image3_path, 'rb') as f:
+        image3_data = f.read()
+
+    # 이미지 데이터를 BytesIO에 넣습니다.
+    image1 = Image.open(io.BytesIO(image1_data))
+    image2 = Image.open(io.BytesIO(image2_data))
+    image3 = Image.open(io.BytesIO(image3_data))
+
+    # 이미지를 하나로 합칩니다.
+    combined_image = Image.new('RGB', (image1.width, image1.height + image2.height + image3.height))
+    combined_image.paste(image1, (0, 0))
+    combined_image.paste(image2, (0, image1.height))
+    combined_image.paste(image3, (0, image1.height + image2.height))
+
+    # 다운로드 응답을 생성하여 사용자에게 제공합니다.
+    response = HttpResponse(content_type='image/jpeg')
+    response['Content-Disposition'] = 'attachment; filename="combined_image.jpg"'
+    combined_image.save(response, 'JPEG')
+    
+    return response
+
+
 def base(request):
     if request.method == 'POST':
         input_text = request.POST.get('input_text', '')
@@ -76,6 +109,8 @@ def base(request):
 
         labels = {0: 'happy', 1: 'sad', 2: 'angry'}
         predicted_label = labels[prediction]
+
+        request.session['predicted_label'] = predicted_label
 
         # play.py 실행 >> StarGAN을 통한 표정 생성
         subprocess.run(['python3', 'serving/play.py'])
