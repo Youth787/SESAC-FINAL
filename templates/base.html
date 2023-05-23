@@ -76,28 +76,29 @@
                     <div class="testimonial-card-content">
                         <h3 class="testimonial-card-heading">지금, 여러분의 감정을<br />이곳에 표현해보세요 !</h3>
                         <p class="testimonial-text-three"><strong class="bold-text-2">사진과 문장을 넣어주세요</strong></p>
-                                <form method="post" enctype="multipart/form-data">
-                                    {% csrf_token %}
-                                    <input type="text" class="text-field w-input" maxlength="256" name="input_text"
-                                            data-name="Emotion Box" placeholder="" id="Emotion-Box" required=""/>
-                                    <input type="file" name="input_image"> 
-                                    <div style="display:flex; flex-direction: column;">
-                                    <button type="submit" name="submit" value="result_12" class="submit-button w-button"/>change emotion</button>
-                                    <button type="submit" name="submit" value="result_13" class="submit-button w-button"/>change photo</button>
-                                    </div>
-                                        <!-- 로딩 화면 -->
-                                        <div id="loading-screen" style="display: none;"> 
-                                        <div class="box">
-                                        <div class="loader4"></div>
-                                        {% comment %} <div id="countdown">35</div>  {% endcomment %}
-                                        </div>
-                                        </div>
-                                </form>
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <input type="text" class="text-field w-input" maxlength="256" name="input_text"
+                                   data-name="Emotion Box" placeholder="" id="Emotion-Box" required=""/>
+                            <input type="file" name="input_image">
+                            <div style="display: flex; flex-direction: column;">
+                                <button type="submit" name="submit" value="result_12" class="submit-button w-button">change emotion</button>
+                                <button type="submit" name="submit" value="result_13" class="submit-button w-button">change photo</button>
                             </div>
-                        </div>
+                            <!-- 로딩 화면 -->
+                            <div id="loading-screen" style="display: none;">
+                                <div class="box">
+                                    <div class="loader4"></div>
+                                    {% comment %} <div id="countdown">35</div>  {% endcomment %}
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                </section>
+                </div>
             </div>
+        </section>
+    </div>
+    
 
     <address id="Community" class="container-community w-container">
         <div class="div-block-8">
@@ -133,8 +134,10 @@
                                         <div class="testimonial-quote">Step 1 . <br /><br />유저가 입력한 문장의 감정을 분석합니다
                                             .<br /></div>
                                     </div><img
-                                        src="https://uploads-ssl.webflow.com/6462248b393b5508346731d0/64622dca552e56d4f1d32180_%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202023-05-15%20173646.png"
-                                        loading="lazy" alt="" class="testimonial-image-two" />
+                                        src="https://uploads-ssl.webflow.com/6462248b393b5508346731d0/646cbf1785a2b93646374b5a_%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202023-05-23%20222411.png"
+                                        loading="lazy" sizes="(max-width: 479px) 84vw, (max-width: 767px) 88vw, 350px"
+                                        srcset="https://uploads-ssl.webflow.com/6462248b393b5508346731d0/646cbf1785a2b93646374b5a_%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202023-05-23%20222411-p-500.png 500w, https://uploads-ssl.webflow.com/6462248b393b5508346731d0/646cbf1785a2b93646374b5a_%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202023-05-23%20222411-p-800.png 800w, https://uploads-ssl.webflow.com/6462248b393b5508346731d0/646cbf1785a2b93646374b5a_%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202023-05-23%20222411-p-1080.png 1080w, https://uploads-ssl.webflow.com/6462248b393b5508346731d0/646cbf1785a2b93646374b5a_%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202023-05-23%20222411.png 1153w"
+                                        alt="" class="testimonial-image-two" />
                                 </div>
                             </div>
                             <div class="w-slide">
@@ -146,8 +149,10 @@
                                         <div class="testimonial-quote">Step2 .<br /><br />유저의 사진을 분석된 감정의 표정으로 변환합니다
                                         </div>
                                     </div><img
-                                        src="https://uploads-ssl.webflow.com/6462248b393b5508346731d0/64622dcae3249fed0767991b_%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202023-05-15%20173652.png"
-                                        loading="lazy" alt="" class="testimonial-image-two" />
+                                        src="https://uploads-ssl.webflow.com/6462248b393b5508346731d0/646cbf17230c9c1b4942538f_%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202023-05-23%20222455.png"
+                                        loading="lazy" sizes="(max-width: 479px) 84vw, (max-width: 767px) 88vw, 350px"
+                                        srcset="https://uploads-ssl.webflow.com/6462248b393b5508346731d0/646cbf17230c9c1b4942538f_%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202023-05-23%20222455-p-500.png 500w, https://uploads-ssl.webflow.com/6462248b393b5508346731d0/646cbf17230c9c1b4942538f_%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202023-05-23%20222455-p-800.png 800w, https://uploads-ssl.webflow.com/6462248b393b5508346731d0/646cbf17230c9c1b4942538f_%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202023-05-23%20222455-p-1080.png 1080w, https://uploads-ssl.webflow.com/6462248b393b5508346731d0/646cbf17230c9c1b4942538f_%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202023-05-23%20222455.png 1223w"
+                                        alt="" class="testimonial-image-two" />
                                 </div>
                             </div>
                             <div class="w-slide">
@@ -158,8 +163,11 @@
                                         <div class="text-block">심플하게 즐기는 AnyTicon</div>
                                         <div class="testimonial-quote">Step3 .<br /><br />표정이 변환된 사진을 정해진 화풍으로 변환합니다
                                         </div>
-                                    </div><img src="https://uploads-ssl.webflow.com/6462248b393b5508346731d0/64622dca368a9e5c6ef4ca27_%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202023-05-15%20173655.png"
-                                            loading="lazy" alt="" class="testimonial-image-two" />
+                                    </div><img
+                                        src="https://uploads-ssl.webflow.com/6462248b393b5508346731d0/646cbf1705e1721fa3567af2_%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202023-05-23%20222523.png"
+                                        loading="lazy" sizes="(max-width: 479px) 84vw, (max-width: 767px) 88vw, 350px"
+                                        srcset="https://uploads-ssl.webflow.com/6462248b393b5508346731d0/646cbf1705e1721fa3567af2_%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202023-05-23%20222523-p-500.png 500w, https://uploads-ssl.webflow.com/6462248b393b5508346731d0/646cbf1705e1721fa3567af2_%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202023-05-23%20222523-p-800.png 800w, https://uploads-ssl.webflow.com/6462248b393b5508346731d0/646cbf1705e1721fa3567af2_%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202023-05-23%20222523-p-1080.png 1080w, https://uploads-ssl.webflow.com/6462248b393b5508346731d0/646cbf1705e1721fa3567af2_%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202023-05-23%20222523.png 1206w"
+                                        alt="" class="testimonial-image-two" />
                                 </div>
                             </div>
                         </div>
@@ -178,36 +186,38 @@
     <div id="OUR-TEAM" class="container-team2 w-container">
         <h1 class="heading-5">Team &#x27;AnyTicon&#x27;</h1>
         <div id="team2" class="w-layout-grid grid"><img
-                src="https://uploads-ssl.webflow.com/6462248b393b5508346731d0/6464bde8b411a231097fe9af_%EC%B9%9C.jpg"
+                src="https://uploads-ssl.webflow.com/6462248b393b5508346731d0/646cbff621d9bb0393cea3bd_%EC%B0%ACpng.png"
                 loading="lazy" width="400" height="400" id="w-node-d8363a35-c7a6-75a4-3c01-7f45ce5fabb5-34673256"
                 alt="" />
-            <p id="w-node-_00593cea-0ee9-aad8-81bb-1e0b19bf9e04-34673256" class="paragraph-2"><strong>팀원소개 1<br />팀원소개
-                    1<br />팀원소개 1</strong></p>
-            <p id="w-node-_9b52aaa5-0bc2-e32f-9b20-75a24f4f4272-34673256" class="paragraph-5"><strong>팀원소개 1<br />팀원소개
-                    1<br />팀원소개 1</strong></p>
-            <p id="w-node-_4e3b6915-3a8e-7b7e-7901-fd9498cd3bc1-34673256" class="paragraph-6"><strong>팀원소개 1<br />팀원소개
-                    1<br />팀원소개 1</strong></p><img
-                src="https://uploads-ssl.webflow.com/6462248b393b5508346731d0/6464bde8cad8de9f10350ca5_%EB%B9%88.jpg"
-                loading="lazy" width="400" height="400" id="w-node-_4a6b451a-cf10-b5fe-2af6-b6df21aa427c-34673256"
+            <p id="w-node-_00593cea-0ee9-aad8-81bb-1e0b19bf9e04-34673256" class="paragraph-2"><strong>김 성
+                    수<br />‍<br />모델링(Klue Bert) &amp; 프론트 개발</strong></p>
+            <p id="w-node-_9b52aaa5-0bc2-e32f-9b20-75a24f4f4272-34673256" class="paragraph-5"><strong>김 예 빈
+                    <br /><br />모델링 (Klue Bert) &amp; 프론트 개발</strong></p>
+            <p id="w-node-_4e3b6915-3a8e-7b7e-7901-fd9498cd3bc1-34673256" class="paragraph-6"><strong>오 주
+                    화<br /><br />모델링 (Deep Fake 및 Api 활용)</strong></p><img
+                src="https://uploads-ssl.webflow.com/6462248b393b5508346731d0/646cbff68f41108fb643d9cb_%EC%98%88%EB%B9%88.jpg"
+                loading="lazy" width="400" height="400"
+                srcset="https://uploads-ssl.webflow.com/6462248b393b5508346731d0/646cbff68f41108fb643d9cb_%EC%98%88%EB%B9%88-p-500.jpg 500w, https://uploads-ssl.webflow.com/6462248b393b5508346731d0/646cbff68f41108fb643d9cb_%EC%98%88%EB%B9%88-p-800.jpg 800w, https://uploads-ssl.webflow.com/6462248b393b5508346731d0/646cbff68f41108fb643d9cb_%EC%98%88%EB%B9%88-p-1080.jpg 1080w, https://uploads-ssl.webflow.com/6462248b393b5508346731d0/646cbff68f41108fb643d9cb_%EC%98%88%EB%B9%88.jpg 1242w"
+                sizes="(max-width: 479px) 100vw, 400px" id="w-node-_4a6b451a-cf10-b5fe-2af6-b6df21aa427c-34673256"
                 alt="" />
-            <p id="w-node-ac473604-bddb-3933-9b0a-ef4f53ddd4cb-34673256" class="paragraph-7"><strong>팀원소개 1<br />팀원소개
-                    1<br />팀원소개 1</strong></p>
-            <p id="w-node-_1416787a-3a35-c387-224c-6e1975a8d070-34673256" class="paragraph-4"><strong>팀원소개 1<br />팀원소개
-                    1<br />팀원소개 1</strong></p><img
-                src="https://uploads-ssl.webflow.com/6462248b393b5508346731d0/6464bde85b1411bb06ef4905_%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202023-05-17%20204257.png"
+            <p id="w-node-ac473604-bddb-3933-9b0a-ef4f53ddd4cb-34673256" class="paragraph-7"><strong>정 연 미
+                    <br /><br />모델링 (Klue Bert) &amp; 백엔드 개발</strong></p>
+            <p id="w-node-_1416787a-3a35-c387-224c-6e1975a8d070-34673256" class="paragraph-4"><strong>김 현 우
+                    <br /><br />모델링 (Star Gan)</strong></p><img
+                src="https://uploads-ssl.webflow.com/6462248b393b5508346731d0/646cbff621d9bb0393cea3c0_%EC%A2%8C.png"
                 loading="lazy" width="400" height="400" id="w-node-ec888230-dca9-19e5-6488-aa187a30371e-34673256"
                 alt="" />
-            <p id="w-node-e3fb98ee-4647-65c5-76c6-196637d2056b-34673256" class="paragraph-3"><strong>팀원소개 1<br />팀원소개
-                    1<br />팀원소개 1</strong></p><img
-                src="https://uploads-ssl.webflow.com/6462248b393b5508346731d0/646232b1ecb7cba0a499d7e3_D-P%20profile%20Image.jpeg"
+            <p id="w-node-e3fb98ee-4647-65c5-76c6-196637d2056b-34673256" class="paragraph-3"><strong>이 영 찬
+                    <br /><br />모델링 (Cycle Gan)</strong></p><img
+                src="https://uploads-ssl.webflow.com/6462248b393b5508346731d0/646cbff7dd0ef57c219927ee_%EB%82%98.jpg"
                 loading="lazy" width="400" height="400"
-                srcset="https://uploads-ssl.webflow.com/6462248b393b5508346731d0/646232b1ecb7cba0a499d7e3_D-P%20profile%20Image-p-500.jpeg 500w, https://uploads-ssl.webflow.com/6462248b393b5508346731d0/646232b1ecb7cba0a499d7e3_D-P%20profile%20Image.jpeg 640w"
+                srcset="https://uploads-ssl.webflow.com/6462248b393b5508346731d0/646cbff7dd0ef57c219927ee_%EB%82%98-p-500.jpg 500w, https://uploads-ssl.webflow.com/6462248b393b5508346731d0/646cbff7dd0ef57c219927ee_%EB%82%98-p-800.jpg 800w, https://uploads-ssl.webflow.com/6462248b393b5508346731d0/646cbff7dd0ef57c219927ee_%EB%82%98-p-1080.jpg 1080w, https://uploads-ssl.webflow.com/6462248b393b5508346731d0/646cbff7dd0ef57c219927ee_%EB%82%98.jpg 1242w"
                 sizes="(max-width: 479px) 100vw, 400px" id="w-node-d09b83ba-985f-cf38-a5f0-c1573e979199-34673256"
                 alt="" /><img
-                src="https://uploads-ssl.webflow.com/6462248b393b5508346731d0/6464bde7cad8de9f10350b41_KakaoTalk_20230514_181706653.jpg"
+                src="https://uploads-ssl.webflow.com/6462248b393b5508346731d0/646cbff6b605bd470a368037_%EC%97%B0%EB%AF%B8.png"
                 loading="lazy" width="400" height="400" id="w-node-e9c262c8-9d0c-15fc-b8d5-9a014a03eaf7-34673256"
                 alt="" /><img
-                src="https://uploads-ssl.webflow.com/6462248b393b5508346731d0/6464bde81dca6b9d8d09d5c6_%EC%9A%B0.jpg"
+                src="https://uploads-ssl.webflow.com/6462248b393b5508346731d0/646cbff7dd0ef57c219927f1_%ED%98%84%EC%9A%B0.png"
                 loading="lazy" width="400" height="400" id="w-node-_80eba35e-78d0-57dd-e78f-6eabe6a5b028-34673256"
                 alt="" />
         </div>
