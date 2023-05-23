@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from serving.views import base
+from serving.views import base, result_12,result_13
 from serving.views import download_combined_image
 from django.conf import settings
 from django.conf.urls.static import static
@@ -24,9 +24,9 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('',include('serving.urls')),
     path('',base, name='base'),
-    path('result/', base, name='result'),  # result 페이지 URL 패턴 추가
+    path('result_12/', result_12, name='result_12'),
+    path('result_13/', result_13, name='result_13'), 
     path('pybo/', include('pybo.urls')), 
     path('combined_image/', download_combined_image, name='combined_image'),
 ]

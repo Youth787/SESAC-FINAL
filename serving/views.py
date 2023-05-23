@@ -89,72 +89,135 @@ def download_combined_image(request):
 
 def base(request):
     if request.method == 'POST':
-        input_text = request.POST.get('input_text', '')
-        input_image = request.FILES.get('input_image')
-
-        # 이미지 저장 경로 설정
-        input_save_path = os.path.join(settings.BASE_DIR, 'static','stargan', 'input','image')
-
-        # 이미지 저장
-        file_name = 'input_img.jpg'
-        if input_image:
-            with open(os.path.join(input_save_path, file_name), 'wb') as f:
-                for chunk in input_image.chunks():
-                    f.write(chunk)
-        
-        # 얼굴 크롭 진행
-        haar_face_crop(input_save_path, file_name)
-        
-        prediction = predict_sentiment(input_text)
-
-        labels = {0: 'happy', 1: 'sad', 2: 'angry'}
-        predicted_label = labels[prediction]
-
-        request.session['predicted_label'] = predicted_label
-
-        # play.py 실행 >> StarGAN을 통한 표정 생성
-        subprocess.run(['python3', 'serving/play.py'])
-        
-        # 파일 경로 설정
-        results_save_path = os.path.join(settings.BASE_DIR, 'static', 'stargan','outputs','results')
-        outputs_save_path = os.path.join(settings.BASE_DIR, 'static','stargan', 'outputs')
-        src_image = os.path.join(results_save_path, f'{predicted_label}.jpg')
-        des_image = os.path.join(outputs_save_path, f'{predicted_label}.jpg')
-        # src_image = os.path.join('static/stargan/outputs/results', f'{predicted_label}.jpg')
-        # des_image = os.path.join('static/stargan/outputs', f'{predicted_label}.jpg')
-        
-        # 파일 이동
-        shutil.move(src_image, des_image)
-
-        # stargan/results 폴더 내부 파일들 삭제
-        folder_path = os.path.join(settings.BASE_DIR, 'static','stargan', 'outputs','results')
-        for file_name in os.listdir(folder_path):
-            file_path = os.path.join(folder_path, file_name)
-            if os.path.isfile(file_path):
-                os.remove(file_path)
-        
-        # Cyclegan 모델 실행 
-        subprocess.run(['python3', 'serving/ImProvedCycleGANPredict.py', predicted_label])
-        
-        
-        # 이미지 URL 생성
-        image_url_input = os.path.join('static/stargan/input/image','input_img.jpg')
-        image_stargan_output = os.path.join('static/stargan/outputs',f'{predicted_label}.jpg')
-        image_cyclegan_output = os.path.join('static/cyclegan','output.jpg')
-        
-        context = {
-            'input_text': input_text,
-            'predicted_label': predicted_label,
-            'image_url_input': image_url_input,
-            'image_stargan_output' : image_stargan_output,
-            'image_cyclegan_output': image_cyclegan_output,
-        }
-        
-        return render(request, 'result.html', context)
+        if request.POST.get('submit') == 'result_12':
+            return result_12(request)
+        elif request.POST.get('submit') == 'result_13':
+            return result_13(request)
     return render(request, 'base.html')
 
 
+def result_12(request):
+    input_text = request.POST.get('input_text', '')
+    input_image = request.FILES.get('input_image')
+
+    # 이미지 저장 경로 설정
+    input_save_path = os.path.join(settings.BASE_DIR, 'static','stargan', 'input','image')
+
+    # 이미지 저장
+    file_name = 'input_img.jpg'
+    if input_image:
+        with open(os.path.join(input_save_path, file_name), 'wb') as f:
+            for chunk in input_image.chunks():
+                f.write(chunk)
+    
+    # 얼굴 크롭 진행
+    haar_face_crop(input_save_path, file_name)
+    
+    prediction = predict_sentiment(input_text)
+
+    labels = {0: 'happy', 1: 'sad', 2: 'angry'}
+    predicted_label = labels[prediction]
+
+    request.session['predicted_label'] = predicted_label
+
+    # play.py 실행 >> StarGAN을 통한 표정 생성
+    subprocess.run(['python3', 'serving/play.py'])
+    
+    # 파일 경로 설정
+    results_save_path = os.path.join(settings.BASE_DIR, 'static', 'stargan','outputs','results')
+    outputs_save_path = os.path.join(settings.BASE_DIR, 'static','stargan', 'outputs')
+    src_image = os.path.join(results_save_path, f'{predicted_label}.jpg')
+    des_image = os.path.join(outputs_save_path, f'{predicted_label}.jpg')
+    # src_image = os.path.join('static/stargan/outputs/results', f'{predicted_label}.jpg')
+    # des_image = os.path.join('static/stargan/outputs', f'{predicted_label}.jpg')
+    
+    # 파일 이동
+    shutil.move(src_image, des_image)
+
+    # stargan/results 폴더 내부 파일들 삭제
+    folder_path = os.path.join(settings.BASE_DIR, 'static','stargan', 'outputs','results')
+    for file_name in os.listdir(folder_path):
+        file_path = os.path.join(folder_path, file_name)
+        if os.path.isfile(file_path):
+            os.remove(file_path)
+    
+    # Cyclegan 모델 실행 
+    subprocess.run(['python3', 'serving/ImProvedCycleGANPredict.py', predicted_label])
+    
+    # 이미지 URL 생성
+    image_url_input = os.path.join('static/stargan/input/image','input_img.jpg')
+    image_stargan_output = os.path.join('static/stargan/outputs',f'{predicted_label}.jpg')
+    
+    context = {
+        'input_text': input_text,
+        'predicted_label': predicted_label,
+        'image_url_input': image_url_input,
+        'image_stargan_output' : image_stargan_output,
+    }
+    
+    return render(request, 'result_12.html', context)
+    
 
 
 
+def result_13(request):
+    input_text = request.POST.get('input_text', '')
+    input_image = request.FILES.get('input_image')
 
+    # 이미지 저장 경로 설정
+    input_save_path = os.path.join(settings.BASE_DIR, 'static','stargan', 'input','image')
+
+    # 이미지 저장
+    file_name = 'input_img.jpg'
+    if input_image:
+        with open(os.path.join(input_save_path, file_name), 'wb') as f:
+            for chunk in input_image.chunks():
+                f.write(chunk)
+    
+    # 얼굴 크롭 진행
+    haar_face_crop(input_save_path, file_name)
+    
+    prediction = predict_sentiment(input_text)
+
+    labels = {0: 'happy', 1: 'sad', 2: 'angry'}
+    predicted_label = labels[prediction]
+
+    request.session['predicted_label'] = predicted_label
+
+    # play.py 실행 >> StarGAN을 통한 표정 생성
+    subprocess.run(['python3', 'serving/play.py'])
+    
+    # 파일 경로 설정
+    results_save_path = os.path.join(settings.BASE_DIR, 'static', 'stargan','outputs','results')
+    outputs_save_path = os.path.join(settings.BASE_DIR, 'static','stargan', 'outputs')
+    src_image = os.path.join(results_save_path, f'{predicted_label}.jpg')
+    des_image = os.path.join(outputs_save_path, f'{predicted_label}.jpg')
+    # src_image = os.path.join('static/stargan/outputs/results', f'{predicted_label}.jpg')
+    # des_image = os.path.join('static/stargan/outputs', f'{predicted_label}.jpg')
+    
+    # 파일 이동
+    shutil.move(src_image, des_image)
+
+    # stargan/results 폴더 내부 파일들 삭제
+    folder_path = os.path.join(settings.BASE_DIR, 'static','stargan', 'outputs','results')
+    for file_name in os.listdir(folder_path):
+        file_path = os.path.join(folder_path, file_name)
+        if os.path.isfile(file_path):
+            os.remove(file_path)
+    
+    # Cyclegan 모델 실행 
+    subprocess.run(['python3', 'serving/ImProvedCycleGANPredict.py', predicted_label])
+    
+    
+    # 이미지 URL 생성
+    image_url_input = os.path.join('static/stargan/input/image','input_img.jpg')
+    image_cyclegan_output = os.path.join('static/cyclegan','output.jpg')
+    
+    context = {
+        'input_text': input_text,
+        'predicted_label': predicted_label,
+        'image_url_input': image_url_input,
+        'image_cyclegan_output': image_cyclegan_output,
+    }
+    
+    return render(request, 'result_13.html', context)
