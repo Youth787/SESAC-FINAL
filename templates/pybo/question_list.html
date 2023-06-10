@@ -13,7 +13,7 @@
         <tbody>
         {% if question_list %}
         {% for question in question_list %}
-        <tr>
+        <tr> 
             <td>
                 <!-- 번호 = 전체건수 - 시작인덱스 - 현재인덱스 + 1 -->
                 {{ question_list.paginator.count|sub:question_list.start_index|sub:forloop.counter0|add:1 }}
