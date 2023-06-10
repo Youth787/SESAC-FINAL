@@ -40,6 +40,36 @@
 ### Environment
 <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white"> <img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white"> <img src="https://img.shields.io/badge/gitlfs-F64935?style=for-the-badge&logo=gitlfs&logoColor=white"> <img src="https://img.shields.io/badge/visualstudiocode-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=white"> 
 
+## 시작 가이드
+**Requirements**
+For building and running the application you need : 
+
+    Django==3.2.4
+    torch==1.11.0 
+    torchvision==0.12.0
+    transformers==4.11.3
+
+## 데이터 셋
+
+### Klue-bert
+  - ai hub : 감성 대화 말뭉치 \
+  https://aihub.or.kr/aihubdata/data/view.do?currMenu=115&topMenu=100&aihubDataSe=realm&dataSetSn=86
+  - ai hub : 한국어 감정 정보가 포함된 단발성 대화 데이터셋 \
+  https://aihub.or.kr/aihubdata/data/view.do?currMenu=115&topMenu=100
+  
+### Stargan
+  - 중앙대 연구, 이메일로 신청. \
+  http://aihumanities.org/ko/archive/data/?vid=2
+  - GAN 모델 github (pytorch 기반) \
+  https://github.com/eriklindernoren/PyTorch-GAN
+
+### Cyclegan 
+  - 화풍 데이터 도메인인 지브리 이미지 데이터의 경우 지적 재산권이 会社スタジオジブリ에 있기 때문에 해당 결과물을 외부로 공개 또는 영리 목적으로 사용 금지. \
+    전처리 소스코드 및 모델 구성 시 사용한 소스코드는 사용이 가능합니다. \
+   화풍데이터가 아닌 실사 표정 이미지 도메인의 경우 AIHUB에서 구한 한국인 감정인식을 위한 복합영상 데이터가 출처입니다. \
+   해당 자료 또한 내국인만 데이터 신청이 가능하여, 아래 첨부드리는 링크를 참고하여 사용조건을 확인해 주시면 감사하겠습니다. \
+   https://aihub.or.kr/aihubdata/data/view.do?currMenu=115&topMenu=100&aihubDataSe=realm&dataSetSn=82
+
 
 
 ## 화면 구성 
