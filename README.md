@@ -51,13 +51,13 @@ For building and running the application you need :
 
 ## 데이터 셋
 
-### Klue-bert
+### 자연어 모델
   - ai hub : 감성 대화 말뭉치 \
   https://aihub.or.kr/aihubdata/data/view.do?currMenu=115&topMenu=100&aihubDataSe=realm&dataSetSn=86
   - ai hub : 한국어 감정 정보가 포함된 단발성 대화 데이터셋 \
   https://aihub.or.kr/aihubdata/data/view.do?currMenu=115&topMenu=100
   
-### Stargan
+### Stargan 모델
   - 중앙대 연구, 이메일로 신청. \
   http://aihumanities.org/ko/archive/data/?vid=2
   - GAN 모델 github (pytorch 기반) \
