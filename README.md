@@ -2,7 +2,7 @@
 
 <img width="815" height = "400" alt="스크린샷 2023-06-10 오후 3 41 58" src="https://github.com/Youth787/SESAC-FINAL/assets/90955152/d9e4b141-8e7d-4eaf-afaf-11dd98eaa4e3">
 
-## HeLLmet ON
+## Anyticon
 
 개발 기간 : 2023.04.06 ~ 2023.05.24 (48일)
 
